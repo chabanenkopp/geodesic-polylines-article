@@ -83,7 +83,10 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
               id === selectedOrigin?.id
                 ? locationIconActive
                 : locationIconInactive,
-            scaledSize: new window.google.maps.Size(MARKER_SIZE, MARKER_SIZE),
+            scaledSize: new window.google.maps.Size(
+              MARKER_SIZE.SMALL,
+              MARKER_SIZE.SMALL
+            ),
           }}
           onClick={() => {
             setSelectedOriginId(id)
@@ -97,7 +100,10 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
           position={{ lat, lng }}
           icon={{
             url: heartIcon,
-            scaledSize: new window.google.maps.Size(MARKER_SIZE, MARKER_SIZE),
+            scaledSize: new window.google.maps.Size(
+              MARKER_SIZE.LARGE,
+              MARKER_SIZE.LARGE
+            ),
           }}
         />
       ))}
@@ -163,14 +169,25 @@ MapContainer.propTypes = {
   origins: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
+      src: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
       coordinates: PropTypes.shape({
         lat: PropTypes.number.isRequired,
         lon: PropTypes.number.isRequired,
       }).isRequired,
+      flights: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          duration: PropTypes.number.isRequired,
+          isAvailable: PropTypes.bool.isRequired,
+        }).isRequired
+      ).isRequired,
     }).isRequired
   ).isRequired,
   destinations: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
       coordinates: PropTypes.shape({
         lat: PropTypes.number.isRequired,
         lon: PropTypes.number.isRequired,

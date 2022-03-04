@@ -11,7 +11,10 @@ export const MAP_SETTINGS = {
   },
   DEFAULT_CENTER: { lat: 57, lng: 20 },
   DEFAULT_ZOOM: 4,
-  MARKER_SIZE: 35,
+  MARKER_SIZE: {
+    SMALL: 18,
+    LARGE: 25,
+  },
   PIXEL_OFFSET: {
     X: 0,
     Y: 20,

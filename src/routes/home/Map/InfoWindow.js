@@ -6,10 +6,12 @@ import { Flex } from 'components/Layout'
 import { COLOR, FONT_SIZE, FONT_WEIGHT, SPACE } from 'Theme'
 import { Text } from 'components/Typography'
 
+const HEIGHT = rem(20)
+
 const Bubble = styled(Flex)`
   align-items: center;
   justify-content: center;
-  height: ${rem(20)};
+  height: ${HEIGHT};
 `
 
 const StyledText = styled(Text)`
