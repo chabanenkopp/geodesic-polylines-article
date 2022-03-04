@@ -3,37 +3,34 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import { Flex } from 'components/Layout'
-import { COLOR, FONT_SIZE, FONT_WEIGHT } from 'Theme'
-import { convertMinutesToHours } from 'helpers'
+import { COLOR, FONT_SIZE, FONT_WEIGHT, SPACE } from 'Theme'
+import { Text } from 'components/Typography'
 
-const StyledFlex = styled(Flex)`
+const Bubble = styled(Flex)`
   align-items: center;
   justify-content: center;
   height: ${rem(20)};
 `
 
-const StyledText = styled('span')`
+const StyledText = styled(Text)`
   font-size: ${FONT_SIZE.XXS};
   font-weight: ${FONT_WEIGHT.SEMI_BOLD};
-  color: ${COLOR.WHITE};
 `
 
-const InfoWindow = ({ travelTimeInMinutes, isDirectionAvailable }) =>
-  isDirectionAvailable ? (
-    <StyledFlex width={rem(30)} bg={COLOR.EXPLORATION_GREEN}>
-      <StyledText>
-        {`${convertMinutesToHours(travelTimeInMinutes)} h`}
-      </StyledText>
-    </StyledFlex>
-  ) : (
-    <StyledFlex width={rem(16)} bg={COLOR.BLUEBERRY_SODA}>
-      <StyledText>X</StyledText>
-    </StyledFlex>
-  )
+const InfoWindow = ({ flightDuration, isFlightAvailable }) => (
+  <Bubble
+    bg={isFlightAvailable ? COLOR.YELLOW_STAGSHOR : COLOR.OLYMPIC_BLUE}
+    p={SPACE.XS}
+  >
+    <StyledText color={isFlightAvailable ? COLOR.BLACK : COLOR.WHITE}>
+      {isFlightAvailable ? `${flightDuration} m` : 'blocked'}
+    </StyledText>
+  </Bubble>
+)
 
 InfoWindow.propTypes = {
-  travelTimeInMinutes: PropTypes.number.isRequired,
-  isDirectionAvailable: PropTypes.bool.isRequired,
+  flightDuration: PropTypes.number.isRequired,
+  isFlightAvailable: PropTypes.bool.isRequired,
 }
 
 export default InfoWindow

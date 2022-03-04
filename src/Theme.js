@@ -1,5 +1,5 @@
+import { fluidRange, math, rem } from 'polished'
 import { css, createGlobalStyle } from 'styled-components'
-import { fluidRange, transparentize, math, rem } from 'polished'
 
 export const MAX_CONTENT_WIDTH = rem('1440px')
 export const fontStack = `Poppins, Telegraf, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'`
@@ -7,9 +7,8 @@ export const fontStack = `Poppins, Telegraf, system-ui, -apple-system, 'Segoe UI
 export const COLOR = {
   WHITE: '#FFFFFF',
   BLACK: '#000',
-  BLUEBERRY_SODA: '#8591A5',
-  EXPLORATION_GREEN: '#58A55D',
-  LYNX_WHITE: '#F8F8F8' /* 5 Grey */,
+  OLYMPIC_BLUE: '#008ECC',
+  YELLOW_STAGSHOR: '#ffc30b',
 }
 
 export const SPACE = {

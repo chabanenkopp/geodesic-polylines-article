@@ -13,21 +13,15 @@ export const MAP_SETTINGS = {
   DEFAULT_ZOOM: 4,
   MARKER_SIZE: 35,
   PIXEL_OFFSET: {
-    MARKER: {
-      X: 0,
-      Y: -35,
-    },
-    LINE: {
-      X: 0,
-      Y: 20,
-    },
+    X: 0,
+    Y: 20,
   },
   POLYLINE_OPTIONS: {
     DASHED: {
       geodesic: true,
       strokeOpacity: 0,
       strokeWeight: 2,
-      strokeColor: COLOR.BLUEBERRY_SODA,
+      strokeColor: COLOR.OLYMPIC_BLUE,
       icons: [
         {
           icon: {
@@ -45,7 +39,7 @@ export const MAP_SETTINGS = {
       geodesic: true,
       strokeOpacity: 1,
       strokeWeight: 2,
-      strokeColor: COLOR.EXPLORATION_GREEN,
+      strokeColor: COLOR.YELLOW_STAGSHOR,
     },
   },
 }

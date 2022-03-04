@@ -37,12 +37,12 @@ const getGeodesicLineCenter = ({ origin, destination }) =>
   )
 
 const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
+  const mapRef = React.useRef(null)
+
   const [selectedOriginId, setSelectedOriginId] = React.useState(null)
   const [isClickOutsideDisabled, setIsClickOutsideDisabled] = React.useState(
     false
   )
-  const mapRef = React.useRef(null)
-  const selectedOrHoveredOriginId = hoveredOriginId || selectedOriginId
 
   React.useEffect(() => {
     const bounds = new window.google.maps.LatLngBounds()
@@ -80,7 +80,7 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
           position={{ lat, lng }}
           icon={{
             url:
-              id === selectedOrHoveredOriginId
+              id === selectedOrigin?.id
                 ? locationIconActive
                 : locationIconInactive,
             scaledSize: new window.google.maps.Size(MARKER_SIZE, MARKER_SIZE),
@@ -103,24 +103,30 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
       ))}
 
       {selectedOrigin &&
-        destinations.map(({ id, coordinates }) => (
-          <Polyline
-            key={id}
-            path={getLatLngForPolyline({
-              origin: selectedOrigin.coordinates,
-              destination: coordinates,
-            })}
-            options={
-              selectedOrigin?.availableOriginLocationIds?.includes(id)
-                ? POLYLINE_OPTIONS.REGULAR
-                : POLYLINE_OPTIONS.DASHED
-            }
-          />
-        ))}
+        destinations.map(({ id, coordinates }) => {
+          const { isAvailable } = selectedOrigin.flights.find(
+            (flight) => flight.id === id
+          )
+          return (
+            <Polyline
+              key={id}
+              path={getLatLngForPolyline({
+                origin: selectedOrigin.coordinates,
+                destination: coordinates,
+              })}
+              options={
+                isAvailable ? POLYLINE_OPTIONS.REGULAR : POLYLINE_OPTIONS.DASHED
+              }
+            />
+          )
+        })}
 
       {selectedOrigin &&
         destinations.map(({ id, coordinates }) => {
-          const { flightDuration } = selectedOrigin
+          const { flights } = selectedOrigin
+          const { duration, isAvailable } = flights.find(
+            (flight) => flight.id === id
+          )
           return (
             <InfoWindow
               key={id}
@@ -130,8 +136,8 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
               })}
               options={{
                 pixelOffset: new window.google.maps.Size(
-                  PIXEL_OFFSET.LINE.X,
-                  PIXEL_OFFSET.LINE.Y
+                  PIXEL_OFFSET.X,
+                  PIXEL_OFFSET.Y
                 ),
               }}
             >
@@ -142,10 +148,8 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
                 disabled={isClickOutsideDisabled}
               >
                 <InfoWindowContent
-                  travelTimeInMinutes={flightDuration / 60}
-                  isDirectionAvailable={
-                    !selectedOrigin?.availableOriginLocationIds?.includes(id)
-                  }
+                  flightDuration={duration}
+                  isFlightAvailable={isAvailable}
                 />
               </OutsideClickHandler>
             </InfoWindow>

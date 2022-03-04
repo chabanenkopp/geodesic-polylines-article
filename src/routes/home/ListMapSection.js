@@ -18,7 +18,7 @@ const ListWrapper = styled('div')`
 const List = styled('div')`
   width: 100%;
   margin-left: auto;
-  padding: 0 ${SPACE.M} ${SPACE.M} ${SPACE.M};
+  padding: 0 ${SPACE.M} ${SPACE.M};
   max-width: ${CONTENT_WIDTH};
 `
 
