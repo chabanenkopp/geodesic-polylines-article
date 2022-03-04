@@ -1,40 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import { rem } from 'polished'
+import { Flex } from 'components/Layout'
+import { COLOR, FONT_SIZE, FONT_WEIGHT, SPACE } from 'Theme'
 import { Text } from 'components/Typography'
-import { Box } from 'components/Layout'
-import { TitleWrapper } from 'routes/home/Card'
-import { COLOR, FONT_SIZE, FONT_WEIGHT } from 'Theme'
 
-const MAX_WIDTH = rem(240)
+const HEIGHT = rem(20)
 
-const LocationImage = styled('img')`
-  object-fit: cover;
-  width: 100%;
-  height: ${rem(200)};
+const Bubble = styled(Flex)`
+  align-items: center;
+  justify-content: center;
+  height: ${HEIGHT};
 `
 
-const InfoWindow = ({ title, src }) => (
-  <Box maxWidth={MAX_WIDTH}>
-    <LocationImage src={src} />
-    <Box position="absolute" bottom={0}>
-      <TitleWrapper>
-        <Text
-          fontSize={FONT_SIZE.L}
-          fontWeight={FONT_WEIGHT.SEMI_BOLD}
-          color={COLOR.BLACK}
-        >
-          {title}
-        </Text>
-      </TitleWrapper>
-    </Box>
-  </Box>
+const StyledText = styled(Text)`
+  font-size: ${FONT_SIZE.XXS};
+  font-weight: ${FONT_WEIGHT.SEMI_BOLD};
+`
+
+const InfoWindow = ({ flightDuration, isFlightAvailable }) => (
+  <Bubble
+    bg={isFlightAvailable ? COLOR.YELLOW_STAGSHOR : COLOR.OLYMPIC_BLUE}
+    p={SPACE.XS}
+  >
+    <StyledText color={isFlightAvailable ? COLOR.BLACK : COLOR.WHITE}>
+      {isFlightAvailable ? `${flightDuration} m` : 'blocked'}
+    </StyledText>
+  </Bubble>
 )
 
 InfoWindow.propTypes = {
-  title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  flightDuration: PropTypes.number.isRequired,
+  isFlightAvailable: PropTypes.bool.isRequired,
 }
 
 export default InfoWindow

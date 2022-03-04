@@ -1,37 +1,53 @@
-export const MOCK_DESTINATIONS_DATA = [
+export const MOCK_ORIGINS_DATA = [
   {
     id: 1,
-    title: 'Falun',
-    coordinates: { lat: 60.610361157011646, lon: 15.63610136902125 },
-    src:
-      'https://i.pinimg.com/originals/09/9e/60/099e600bcfa057bf1c9ecdcce0ad529c.jpg',
+    title: 'Kyiv',
+    coordinates: { lat: 50.450001, lon: 30.523333 },
+    src: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Lavra_Kyiv.JPG',
+    flights: [
+      { id: 4, duration: 75, isAvailable: true },
+      { id: 5, duration: 80, isAvailable: true },
+      { id: 6, duration: 50, isAvailable: true },
+    ],
   },
   {
     id: 2,
-    title: 'Borlänge',
-    coordinates: { lat: 60.48842366329842, lon: 15.433924559547531 },
+    title: 'Kharkiv',
+    coordinates: { lat: 49.988358, lon: 36.232845 },
     src:
-      'https://i0.wp.com/www.afterschoolafrica.com/wp-content/uploads/2016/05/dalarnyuniversity4.jpg?fit=1024%2C682&ssl=1',
+      'https://images.novyny.live/images/thumbnail/1366x570/613a3b31dca30-khar-kov-15.jpg',
+    flights: [
+      { id: 4, duration: 85, isAvailable: false },
+      { id: 5, duration: 90, isAvailable: true },
+      { id: 6, duration: 60, isAvailable: true },
+    ],
   },
-]
-export const MOCK_ORIGINS_DATA = [
   {
     id: 3,
-    title: 'Uppsala',
-    coordinates: { lat: 59.86700302991904, lon: 17.639901897585162 },
-    src:
-      'https://d3aux7tjp119y2.cloudfront.net/images/oscar-ekholm-DC50Oj2m4CY-unsplash-CMSTemplate.width-1650_5AWSVQc.jpg',
+    title: 'Mariupol',
+    coordinates: { lat: 47.097133, lon: 37.543367 },
+    src: 'https://pr.ua/userfiles/news/2021/06/onegina/marnyrdjrjgi.jpg',
+    flights: [
+      { id: 4, duration: 95, isAvailable: false },
+      { id: 5, duration: 100, isAvailable: false },
+      { id: 6, duration: 70, isAvailable: true },
+    ],
   },
+]
+export const MOCK_DESTINATIONS_DATA = [
   {
     id: 4,
     title: 'Stockholm',
     coordinates: { lat: 59.3369241797981, lon: 18.068564023967703 },
-    src: 'https://media.timeout.com/images/105237902/image.jpg',
   },
   {
     id: 5,
-    title: 'Västerås',
-    coordinates: { lat: 59.613981697602505, lon: 16.545432509139218 },
-    src: 'https://cdn.britannica.com/15/146615-050-A7D0BA8D/Vasteras-Swed.jpg',
+    title: 'Rome',
+    coordinates: { lat: 41.902782, lon: 12.496366 },
+  },
+  {
+    id: 6,
+    title: 'Bratislava',
+    coordinates: { lat: 48.148598, lon: 17.107748 },
   },
 ]
