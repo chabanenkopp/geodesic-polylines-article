@@ -33,7 +33,6 @@ export const MAP_SETTINGS = {
             strokeWeight: 2,
             scale: 3,
           },
-          offset: '0',
           repeat: '10px',
         },
       ],
@@ -43,6 +42,21 @@ export const MAP_SETTINGS = {
       strokeOpacity: 1,
       strokeWeight: 2,
       strokeColor: COLOR.YELLOW_STAGSHOR,
+    },
+  },
+  POLYGON: {
+    PATHS: [
+      { lat: 44.337799, lng: 36.640032 },
+      { lat: 44.337799, lng: 32.142806 },
+      { lat: 46.070955, lng: 32.142806 },
+      { lat: 46.070955, lng: 36.640032 },
+    ],
+    OPTIONS: {
+      strokeWeight: 2,
+      strokeOpacity: 0.8,
+      strokeColor: COLOR.OLYMPIC_BLUE,
+      fillOpacity: 0.35,
+      fillColor: COLOR.YELLOW_STAGSHOR,
     },
   },
 }
