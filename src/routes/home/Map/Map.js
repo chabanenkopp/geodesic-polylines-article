@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import OutsideClickHandler from 'react-outside-click-handler'
 import {
   Marker,
+  Polygon,
   Polyline,
   GoogleMap,
   InfoWindow,
@@ -23,13 +24,14 @@ const {
   MARKER_SIZE,
   PIXEL_OFFSET,
   POLYLINE_OPTIONS,
+  POLYGON,
 } = MAP_SETTINGS
 
-const getLatLngForPolyline = ({ origin, destination }) => [
+const getLatLngPolyline = ({ origin, destination }) => [
   { lat: origin.lat, lng: origin.lon },
   { lat: destination.lat, lng: destination.lon },
 ]
-const getGeodesicLineCenter = ({ origin, destination }) =>
+const getLineCenter = ({ origin, destination }) =>
   window.google.maps.geometry.spherical.interpolate(
     new window.google.maps.LatLng(origin.lat, origin.lon),
     new window.google.maps.LatLng(destination.lat, destination.lon),
@@ -116,7 +118,7 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
           return (
             <Polyline
               key={id}
-              path={getLatLngForPolyline({
+              path={getLatLngPolyline({
                 origin: selectedOrigin.coordinates,
                 destination: coordinates,
               })}
@@ -136,7 +138,7 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
           return (
             <InfoWindow
               key={id}
-              position={getGeodesicLineCenter({
+              position={getLineCenter({
                 origin: selectedOrigin.coordinates,
                 destination: coordinates,
               })}
@@ -161,6 +163,8 @@ const MapContainer = ({ origins, destinations, hoveredOriginId }) => {
             </InfoWindow>
           )
         })}
+
+      <Polygon paths={POLYGON.PATHS} options={POLYGON.OPTIONS} />
     </GoogleMap>
   )
 }

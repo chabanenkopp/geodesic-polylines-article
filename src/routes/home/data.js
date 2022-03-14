@@ -37,17 +37,14 @@ export const MOCK_ORIGINS_DATA = [
 export const MOCK_DESTINATIONS_DATA = [
   {
     id: 4,
-    title: 'Stockholm',
     coordinates: { lat: 59.3369241797981, lon: 18.068564023967703 },
   },
   {
     id: 5,
-    title: 'Rome',
     coordinates: { lat: 41.902782, lon: 12.496366 },
   },
   {
     id: 6,
-    title: 'Bratislava',
     coordinates: { lat: 48.148598, lon: 17.107748 },
   },
 ]
